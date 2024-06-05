@@ -1,0 +1,8 @@
+USE onlineStore;
+CREATE TABLE orders(
+    order_id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    customer_id INTEGER REFERENCES customers(customer_id) ON DELETE CASCADE ON UPDATE NO ACTION,
+    product_id INTEGER REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE NO ACTION,
+    quantity INTEGER NOT NULL
+
+);

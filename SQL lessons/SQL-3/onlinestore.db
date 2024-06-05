@@ -1,0 +1,42 @@
+DROP DATABASE IF EXISTS onlineStore;
+CREATE DATABASE onlineStore;
+
+-- Tables
+-- Customers
+-- Products
+-- Cart/Order
+
+USE onlineStore;
+CREATE TABLE customers (
+    customer_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    customer_email VARCHAR(255) NOT NULL,
+    customer_town VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    dob DATE,
+    is_active BOOLEAN DEFAULT 1
+);
+
+
+CREATE TABLE products(
+    product_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    category_id INTEGER REFERENCES category(category_id),
+    product_name VARCHAR(255) NOT NULL,
+    product_quantity INTEGER NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL
+
+);
+
+
+CREATE TABLE category (
+    category_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE orders(
+    order_id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    customer_id INTEGER REFERENCES customers(customer_id) ON DELETE CASCADE ON UPDATE NO ACTION,
+    product_id INTEGER REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE NO ACTION,
+    quantity INTEGER NOT NULL
+);

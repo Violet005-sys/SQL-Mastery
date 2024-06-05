@@ -1,0 +1,10 @@
+ALTER TABLE student 
+ADD COLUMN gender VARCHAR(10) NOT NULL DEFAULT 'Female';
+
+ALTER TABLE student
+DROP COLUMN gender;
+
+SHOW TABLES;
+
+
+SELECT * FROM student
